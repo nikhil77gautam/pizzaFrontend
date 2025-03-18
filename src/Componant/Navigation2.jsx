@@ -4,25 +4,22 @@ import { Link, useNavigate } from "react-router-dom";
 import Sidenav from "./Sidenav";
 import { getUserCart } from "./Redux/getCartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Logout from "./Logout";
 
 const Navigation2 = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    !!localStorage.getItem("authToken")
-  );
   const [cartLength, setCartLength] = useState(0);
   const [notifications, setNotifications] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { userCart } = useSelector((state) => state.userCart);
 
-  // Check login status on mount & whenever localStorage changes
   useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("authToken"));
+    const token = localStorage.getItem("authToken");
+    setIsLoggedIn(!!token);
   }, []);
 
   useEffect(() => {
@@ -41,8 +38,8 @@ const Navigation2 = () => {
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("customerId");
-
-    setNavOpen(false); // Close dropdown after logout
+    setIsLoggedIn(false);
+    setNavOpen(false);
     navigate("/login");
   };
 
@@ -116,7 +113,6 @@ const Navigation2 = () => {
           )}
         </Link>
 
-        {/* User Dropdown */}
         <div className="relative">
           <FaUser
             className="text-white text-lg cursor-pointer"
