@@ -1,36 +1,36 @@
-import React, { useState } from 'react';
-import { FaTimes } from 'react-icons/fa';
-import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [isLoggedIn,setLoggedIn] = useState();
+  const [isLoggedIn, setLoggedIn] = useState();
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
 
-  const handleLogin = async(e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await axios.post("http://localhost:8000/customerlogin",input)
+    const res = await axios.post(
+      "https://pizzabackend-0x3r.onrender.com/customerlogin",
+      input
+    );
     try {
-      
-    if(res.data.success){
-      console.log(res.data)
-      
-      localStorage.setItem('authToken', res.data.token);
-      localStorage.setItem("customerId", res.data._id)
-    
-    navigate("/")
-    }else{
-      alert(res.data.message)
-    }
+      if (res.data.success) {
+        console.log(res.data);
+
+        localStorage.setItem("authToken", res.data.token);
+        localStorage.setItem("customerId", res.data._id);
+
+        navigate("/");
+      } else {
+        alert(res.data.message);
+      }
     } catch (error) {
       console.error("Error during login:", error);
     }
-
-  
   };
 
   return (
@@ -38,7 +38,10 @@ const Login = () => {
       <div className="mx-4 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-32 w-full max-w-md rounded-lg relative bg-white bg-opacity-10 p-6 z-10">
         <div className="flex justify-between items-center mb-4">
           <h3 className="font-extrabold text-white text-xl">Login</h3>
-          <FaTimes className="text-gray-600 cursor-pointer" onClick={() => navigate('/')} />
+          <FaTimes
+            className="text-gray-600 cursor-pointer"
+            onClick={() => navigate("/")}
+          />
         </div>
         <hr className="my-2" />
         <form className="space-y-4" onSubmit={handleLogin}>
@@ -47,7 +50,9 @@ const Login = () => {
             type="email"
             name="email"
             value={input.email}
-            onChange={(e) => setInput({ ...input, [e.target.name]: e.target.value })}
+            onChange={(e) =>
+              setInput({ ...input, [e.target.name]: e.target.value })
+            }
             placeholder="Enter Your Email"
             required
           />
@@ -56,7 +61,9 @@ const Login = () => {
             type="password"
             name="password"
             value={input.password}
-            onChange={(e) => setInput({ ...input, [e.target.name]: e.target.value })}
+            onChange={(e) =>
+              setInput({ ...input, [e.target.name]: e.target.value })
+            }
             placeholder="Your Password"
             required
           />

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { getPizzas } from "./Redux/getPizzasSlice";
 import { getmeals } from "./Redux/getMealsSlice";
 import { getUserCart } from "./Redux/getCartSlice";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
   const [quantities, setQuantities] = useState({});
@@ -17,8 +17,8 @@ const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
 
   const getHomePizza = useSelector((state) => state.getPizzas.homePizzas);
   const meals = useSelector((state) => state.getMeals.getMeals);
-  console.log("getHomePizza",getHomePizza)
-  console.log("meals",meals)
+  console.log("getHomePizza", getHomePizza);
+  console.log("meals", meals);
 
   useEffect(() => {
     // Fetch pizzas and meals only once on component mount
@@ -57,7 +57,7 @@ const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/addtocart",
+        "https://pizzabackend-0x3r.onrender.com/addtocart",
         {
           [isPizza ? "pizzaId" : "mealId"]: itemId,
           customerId,
@@ -103,7 +103,8 @@ const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
       <div
         className="px-4 py-9 md:mt-0"
         style={{
-          backgroundImage: "url(https://i.pinimg.com/originals/1e/45/c1/1e45c1d7218d6f5e469d185223e33beb.jpg)",
+          backgroundImage:
+            "url(https://i.pinimg.com/originals/1e/45/c1/1e45c1d7218d6f5e469d185223e33beb.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -121,7 +122,7 @@ const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
                 >
                   <div className="card-img pt-4 h-40 overflow-hidden rounded-t-lg">
                     <img
-                      src={`http://localhost:8000/${pizza.image}`}
+                      src={`https://pizzabackend-0x3r.onrender.com/${pizza.image}`}
                       alt={pizza.title}
                       className="object-cover w-full h-full"
                     />
@@ -156,7 +157,11 @@ const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
                         </button>
                       </div>
                       <button
-                        className={`ml-4 flex items-center justify-center p-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 w-10 h-10 ${quantities[pizza._id] === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
+                        className={`ml-4 flex items-center justify-center p-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 w-10 h-10 ${
+                          quantities[pizza._id] === 0
+                            ? "opacity-50 cursor-not-allowed"
+                            : ""
+                        }`}
                         onClick={() => handleAddToCart(pizza._id, true)}
                         disabled={quantities[pizza._id] === 0}
                       >
@@ -182,7 +187,7 @@ const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
                 >
                   <div className="card-img pt-4 h-40 overflow-hidden rounded-t-lg">
                     <img
-                      src={`http://localhost:8000/${pizza.image}`}
+                      src={`https://pizzabackend-0x3r.onrender.com/${pizza.image}`}
                       alt={pizza.title}
                       className="object-cover w-full h-full"
                     />
@@ -217,7 +222,11 @@ const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
                         </button>
                       </div>
                       <button
-                        className={`ml-4 flex items-center justify-center p-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 w-10 h-10 ${quantities[pizza._id] === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
+                        className={`ml-4 flex items-center justify-center p-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 w-10 h-10 ${
+                          quantities[pizza._id] === 0
+                            ? "opacity-50 cursor-not-allowed"
+                            : ""
+                        }`}
                         onClick={() => handleAddToCart(pizza._id, true)}
                         disabled={quantities[pizza._id] === 0}
                       >
@@ -243,7 +252,7 @@ const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
                 >
                   <div className="card-img pt-4 h-40 overflow-hidden rounded-t-lg">
                     <img
-                      src={`http://localhost:8000/${meal.image}`}
+                      src={`https://pizzabackend-0x3r.onrender.com/${meal.image}`}
                       alt={meal.title}
                       className="object-cover w-full h-full"
                     />
@@ -278,7 +287,11 @@ const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
                         </button>
                       </div>
                       <button
-                        className={`ml-4 flex items-center justify-center p-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 w-10 h-10 ${quantities[meal._id] === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
+                        className={`ml-4 flex items-center justify-center p-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 w-10 h-10 ${
+                          quantities[meal._id] === 0
+                            ? "opacity-50 cursor-not-allowed"
+                            : ""
+                        }`}
                         onClick={() => handleAddToCart(meal._id, false)}
                         disabled={quantities[meal._id] === 0}
                       >
@@ -303,7 +316,7 @@ const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
                 >
                   <div className="card-img pt-4 h-40 overflow-hidden rounded-t-lg">
                     <img
-                      src={`http://localhost:8000/${meal.image}`}
+                      src={`https://pizzabackend-0x3r.onrender.com/${meal.image}`}
                       alt={meal.title}
                       className="object-cover w-full h-full"
                     />
@@ -338,7 +351,11 @@ const Pizzass = ({ vegRef, nonVegRef, Beverages, Desserts }) => {
                         </button>
                       </div>
                       <button
-                        className={`ml-4 flex items-center justify-center p-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 w-10 h-10 ${quantities[meal._id] === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
+                        className={`ml-4 flex items-center justify-center p-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 w-10 h-10 ${
+                          quantities[meal._id] === 0
+                            ? "opacity-50 cursor-not-allowed"
+                            : ""
+                        }`}
                         onClick={() => handleAddToCart(meal._id, false)}
                         disabled={quantities[meal._id] === 0}
                       >

@@ -12,7 +12,7 @@ export const getUserCart = createAsyncThunk("userCart/getCart", async () => {
   const customerId = localStorage.getItem("customerId");
   const token = localStorage.getItem("authToken");
   try {
-    const response = await axios.get(`http://localhost:8000/getcartpizza/${customerId}`, {
+    const response = await axios.get(`https://pizzabackend-0x3r.onrender.com/getcartpizza/${customerId}`, {
       headers: {
         Authorization: token,
       },

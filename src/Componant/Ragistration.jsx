@@ -20,7 +20,7 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/customersignup", input);
+      const res = await axios.post("https://pizzabackend-0x3r.onrender.com/customersignup", input);
       if (res.data.success) {
         alert("Please verify your email to complete the registration.");
         navigate("/login");

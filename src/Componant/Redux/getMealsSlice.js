@@ -12,7 +12,7 @@ export const getmeals = createAsyncThunk(
   "getmeals", 
   async () => {
     try {
-      const response = await axios.get("http://localhost:8000/readAllmeals");
+      const response = await axios.get("https://pizzabackend-0x3r.onrender.com/readAllmeals");
       console.log("response", response);
       return response.data;
     } catch (error) {

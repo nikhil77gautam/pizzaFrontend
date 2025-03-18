@@ -7,36 +7,44 @@ import Footer from "./Componant/Foter";
 import NavCategory from "./Componant/NavCategory";
 
 const MainApp = () => {
-  
-   // Refs for scrolling to sections
-   const vegRef = useRef(null);
-   const nonVegRef = useRef(null);
-   const Beverages = useRef(null);
-   const Desserts = useRef(null);
-   
+  // Refs for scrolling to sections
+  const vegRef = useRef(null);
+  const nonVegRef = useRef(null);
+  const Beverages = useRef(null);
+  const Desserts = useRef(null);
 
-   const scrollToVeg = () => {
-    vegRef.current.scrollIntoView({ behavior: 'smooth' });
+  const scrollToVeg = () => {
+    vegRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToNonVeg = () => {
-    nonVegRef.current.scrollIntoView({ behavior: 'smooth' });
+    nonVegRef.current.scrollIntoView({ behavior: "smooth" });
   };
-   const scrollToBeverages = () => {
-    Beverages.current.scrollIntoView({ behavior: 'smooth' });
+  const scrollToBeverages = () => {
+    Beverages.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToDesserts = () => {
-    Desserts.current.scrollIntoView({ behavior: 'smooth' });
+    Desserts.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div>
-    <NavCategory scrollToVeg={scrollToVeg} scrollToNonVeg={scrollToNonVeg} scrollToBeverages={scrollToBeverages} scrollToDesserts={scrollToDesserts}/>
+      <NavCategory
+        scrollToVeg={scrollToVeg}
+        scrollToNonVeg={scrollToNonVeg}
+        scrollToBeverages={scrollToBeverages}
+        scrollToDesserts={scrollToDesserts}
+      />
       <Slider />
-        <Home />
+      <Home />
 
-      <Pizzass  vegRef={vegRef} nonVegRef={nonVegRef} Beverages={Beverages} Desserts={Desserts}/>
+      <Pizzass
+        vegRef={vegRef}
+        nonVegRef={nonVegRef}
+        Beverages={Beverages}
+        Desserts={Desserts}
+      />
       <Footer />
     </div>
   );

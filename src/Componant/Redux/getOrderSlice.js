@@ -11,7 +11,7 @@ const initialState = {
 export const getOrderUsers = createAsyncThunk("/getOrder", async () => {
   const customerId = localStorage.getItem("customerId");
   try {
-    const response = await axios.get(`http://localhost:8000/getOrder/${customerId}`);
+    const response = await axios.get(`https://pizzabackend-0x3r.onrender.com/getOrder/${customerId}`);
     return response.data;
   } catch (error) {
     return { Error: error.message };

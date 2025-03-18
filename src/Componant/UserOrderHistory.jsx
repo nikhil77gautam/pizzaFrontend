@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderUsers } from "./Redux/getOrderSlice.js";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
-import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { ListGroup } from "react-bootstrap";
 
 // Rating Component for the entire order
@@ -58,7 +58,7 @@ const UserOrderHistory = () => {
 
   const dispatch = useDispatch();
   const { userOrders } = useSelector((state) => state.userOrders);
-  console.log("userOrders",userOrders)
+  console.log("userOrders", userOrders);
 
   useEffect(() => {
     dispatch(getOrderUsers());
@@ -83,9 +83,12 @@ const UserOrderHistory = () => {
   const deleteOrder = async (orderId) => {
     if (window.confirm("Are you sure you want to delete this order?")) {
       try {
-        await axios.post("http://localhost:8000/deleteOrders", {
-          orderId: orderId,
-        });
+        await axios.post(
+          "https://pizzabackend-0x3r.onrender.com/deleteOrders",
+          {
+            orderId: orderId,
+          }
+        );
         dispatch(getOrderUsers());
       } catch (error) {
         console.error("Error removing order:", error.message);
@@ -93,11 +96,11 @@ const UserOrderHistory = () => {
     }
   };
 
-  const submitOrderRating = async (rating, comment, orderId ,customerId) => {
+  const submitOrderRating = async (rating, comment, orderId, customerId) => {
     try {
-      await axios.post("http://localhost:8000/createReview", {
+      await axios.post("https://pizzabackend-0x3r.onrender.com/createReview", {
         orderId: orderId,
-        customerId:customerId,
+        customerId: customerId,
         rating: rating,
         comment: comment,
       });
@@ -135,7 +138,8 @@ const UserOrderHistory = () => {
               {order.shippingAddress.city}, {order.shippingAddress.state}
             </p>
             <p>
-              {order.shippingAddress.country} - {order.shippingAddress.postalCode}
+              {order.shippingAddress.country} -{" "}
+              {order.shippingAddress.postalCode}
             </p>
           </div>
         </div>
@@ -148,7 +152,10 @@ const UserOrderHistory = () => {
         <div className="mt-4">
           <h3 className="text-lg font-semibold text-gray-800">Your Products</h3>
           {order.cartDetails.map((item, index) => (
-            <div key={index} className="mt-2 p-3 border rounded-lg shadow-sm bg-gray-50">
+            <div
+              key={index}
+              className="mt-2 p-3 border rounded-lg shadow-sm bg-gray-50"
+            >
               <p className="text-gray-700">
                 <span className="font-semibold">Item Name:</span> {item.title}
               </p>
@@ -156,12 +163,14 @@ const UserOrderHistory = () => {
                 <span className="font-semibold">Quantity:</span> {item.quantity}
               </p>
               <p className="text-gray-700">
-                <span className="font-semibold">Price:</span> ₹{item.price * item.quantity}
+                <span className="font-semibold">Price:</span> ₹
+                {item.price * item.quantity}
               </p>
               {/* Display Eating Preferences */}
               {item.eatingPreference && (
                 <p className="text-gray-700">
-                  <span className="font-semibold">Eating Preference:</span> {item.eatingPreference}
+                  <span className="font-semibold">Eating Preference:</span>{" "}
+                  {item.eatingPreference}
                 </p>
               )}
             </div>
@@ -173,7 +182,11 @@ const UserOrderHistory = () => {
           </p>
         </div>
         {/* Order Rating Component */}
-        <OrderRating onRatingSubmit={(rating, comment) => submitOrderRating(rating, comment, order._id , order.customer )} />
+        <OrderRating
+          onRatingSubmit={(rating, comment) =>
+            submitOrderRating(rating, comment, order._id, order.customer)
+          }
+        />
       </div>
     );
   };

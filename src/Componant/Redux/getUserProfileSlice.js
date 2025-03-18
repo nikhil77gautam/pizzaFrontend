@@ -1,27 +1,27 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const fetchUserProfile = createAsyncThunk(
-  'userProfile/fetchUserProfile',
+  "userProfile/fetchUserProfile",
   async (customerId, thunkAPI) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/getUserInfo/${customerId}`,
-        { headers: { Authorization: localStorage.getItem('authToken') } }
+        `https://pizzabackend-0x3r.onrender.com/getUserInfo/${customerId}`,
+        { headers: { Authorization: localStorage.getItem("authToken") } }
       );
       return response.data.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue('Failed to load user profile');
+      return thunkAPI.rejectWithValue("Failed to load user profile");
     }
   }
 );
 
 const userProfileSlice = createSlice({
-  name: 'userProfile',
+  name: "userProfile",
   initialState: {
     profile: null,
     loading: false,
-    error: null
+    error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
