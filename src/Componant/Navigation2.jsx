@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Sidenav from "./Sidenav";
 import { getUserCart } from "./Redux/getCartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Logout from "./Logout";
 
 const Navigation2 = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -38,7 +39,11 @@ const Navigation2 = () => {
   }, [userCart]);
 
   const handleLogout = () => {
-    navigate("/login"); // Redirect to Logout page
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("customerId");
+
+    setNavOpen(false); // Close dropdown after logout
+    navigate("/login");
   };
 
   return (
