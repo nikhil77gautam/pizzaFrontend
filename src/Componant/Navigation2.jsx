@@ -38,10 +38,7 @@ const Navigation2 = () => {
   }, [userCart]);
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("customerId");
-    setIsLoggedIn(false);
-    navigate("/login");
+    navigate("/login"); // Redirect to Logout page
   };
 
   return (
