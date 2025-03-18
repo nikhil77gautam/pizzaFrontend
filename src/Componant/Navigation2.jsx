@@ -10,7 +10,7 @@ const Navigation2 = () => {
   const [navOpen, setNavOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cartLength, setCartLength] = useState(0);
-  const [notifications, setNotifications] = useState(5); // Notification count ke liye state
+  const [notifications, setNotifications] = useState(0); // Notification count ke liye state
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
